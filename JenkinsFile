@@ -1,12 +1,17 @@
 pipeline{
-    agent any
-    
-    tools {nodejs "Node"}
-    
+    agent{
+        docker{
+            image 'node:lts-gallium'
+            args '-p 3000:3000'
+        }
+    }
+    environment {
+        CI = 'true' 
+    }
     stages {
         stage("Build"){
             steps{
-                sh "./npm install"
+                sh "npm install"
             }
         }
     }
