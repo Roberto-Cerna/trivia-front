@@ -1,11 +1,19 @@
 pipeline{
     agent any
     
-    stages{
-        stage('Build'){
+    tools {nodejs "Node"}
+    
+    stages {
+        stage("Git Clone"){
             steps{
-                sh 'npm install'
+                git branch: 'main',credentialsId: 'GIT_HUB_CREDENTIALS',url: 'https://github.com/Roberto-Cerna/PC5-Infra.git'
+            }
+        }
+        stage("Build"){
+            steps{
+                sh "npm install"
             }
         }
     }
 }
+
