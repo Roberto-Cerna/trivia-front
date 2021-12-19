@@ -4,14 +4,9 @@ pipeline{
     tools {nodejs "Node"}
     
     stages {
-        stage("Git Clone"){
-            steps{
-                git branch: 'main',credentialsId: 'GIT_HUB_CREDENTIALS',url: 'https://github.com/Roberto-Cerna/PC5-Infra.git'
-            }
-        }
         stage("Build"){
             steps{
-                sh "npm install"
+                sh "./npm install"
             }
         }
     }
